@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        is-multidex="false"
+        jar="C:\Users\MarcosPaulo\AppData\Local\Android\sdk\extras\android\m2repository\com\android\support\support-v4\18.0.0\support-v4-18.0.0.jar"
+        jumboMode="true"
+        optimize="false"
+        revision="23.0.2"
+        sha1="44ec51e9d395a47aab135e5e1b556c0007442156">
+        <dex dex="C:\Users\MarcosPaulo\AndroidStudioProjects\Electronic Queue Client\app\build\intermediates\pre-dexed\debug\support-v4-18.0.0_ed33949a37931ce3dd9d6697254d8b25b9202c49.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\MarcosPaulo\AndroidStudioProjects\Electronic Queue Client\app\build\intermediates\incremental-classes\debug\instant-run-bootstrap.jar"
+        jumboMode="true"
+        optimize="false"
+        revision="23.0.2"
+        sha1="ca97cffadce631260d040316fa63239187de3fa9">
+        <dex dex="C:\Users\MarcosPaulo\AndroidStudioProjects\Electronic Queue Client\app\build\intermediates\pre-dexed\debug\instant-run-bootstrap_6785b831529059e0472a04aab826fb08a1871ff6.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\MarcosPaulo\AndroidStudioProjects\Electronic Queue Client\app\build\intermediates\incremental-runtime-classes\debug\instant-run.jar"
+        jumboMode="true"
+        optimize="false"
+        revision="23.0.2"
+        sha1="61718d1c676a8992bbddcb224afe723a9407d1a2">
+        <dex dex="C:\Users\MarcosPaulo\AndroidStudioProjects\Electronic Queue Client\app\build\intermediates\pre-dexed\debug\instant-run_c7a1d2961d0c4a675022d7d95fc2b720e36e299d.jar" />
+    </item>
+
+</items>

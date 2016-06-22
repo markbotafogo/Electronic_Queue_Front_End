@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Electronic Queue Client</string>
+    <string name="action_settings">Settings</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="welcome">Welcome to EQ Client</string>
+    <string name="choose">Choose an Option</string>
+    <string name="searchID">Search Queue by ID</string>
+    <string name="searchName">Search Queue by Name</string>
+    <string name="view">View All Queues</string>
+    <string name="login">Login</string>
+
+    <color name="Blue">#00f2f2</color>
+    <color name="Black">#000000</color>
+
+    <string name="enterid">Enter ID</string>
+
+    <color name="White">#FFFFFF</color>
+
+    <string name="entername">Enter Queue Name</string>
+    <string name="enterid2">Enter Queue ID</string>
+    <string name="password">Password</string>
+    <string name="ok">OK</string>
+
+    <color name="Gray">#444444</color>
+    <color name="Light_Gray">#CCCCCC</color>
+
+    <string name="title_activity_list_queues">ListQueuesActivity</string>
+    <string name="title_activity_search">SearchActivity</string>
+    <string name="title_activity_list_tickets">ListTicketsActivity</string>
+    <string name="title_activity_observer">ObserverActivity</string>
+    <string name="title_activity_observe">ObserveActivity</string>
+    <string name="title_activity_owner">OwnerActivity</string>
+    <string name="welcome_user">Welcome User</string>
+    <string name="my_queues">My Queues</string>
+    <string name="create_queue">Create a New Queue</string>
+    <string name="create_controller">Create a New Controller</string>
+    <string name="title_activity_controller">ControllerActivity</string>
+    <string name="title_activity_create_queue">CreateQueueActivity</string>
+    <string name="enter_queue_name">Enter the Queue Name</string>
+    <string name="enter_controller_login">Enter the Username</string>
+    <string name="enter_controller_password">Enter the Password</string>
+    <string name="title_activity_create_controller">CreateControllerActivity</string>
+
+</resources>
