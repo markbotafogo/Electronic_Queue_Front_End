@@ -7,179 +7,139 @@ import java.util.Date;
 import static ufrj.sps.electronicqueueclient.MainActivity.Port;
 import static ufrj.sps.electronicqueueclient.MainActivity.TheIP;
 
+/**
+ * Implements the basic unit of the system. Queues can be put on the Observer for live watch,
+ * created by a user with owner privileges, consumed by a user with controller or owner privileges
+ * and can be searched in the remote database. The structure of this class was made to support the
+ * existence of only one ticket per instance.
+ */
+
 public class Queue implements Comparable<Queue>{
-	
-	private String name;
-	private int id;
-	private int actualNumber;
-	private int nextPassword;
-	private Ticket ticket;
-	private boolean follow = false;
-	
-    private final String urlEnter = "http://" + TheIP + Port + "/axis2/services/EQCloud/enterQueue?queue=";
-    private final String urlConsume = "http://" + TheIP + Port + "/axis2/services/EQCloud/consumeQueue?queue=";
-	private final String urlUpdate = "http://" + TheIP + Port + "/axis2/services/EQCloud/searchQueueId?search=";
-	
-	static final int NUMBER = 2;
-	static final int PASSWORD = 3;
-	
-	public class Ticket implements Comparable<Ticket>{
+
+    private static final int NUMBER = 2;
+    private static final int PASSWORD = 3;
+
+    private final String mUrlEnter = "http://" + TheIP + Port + "/axis2/services/EQCloud/enterQueue?queue=";
+    private final String mUrlConsume = "http://" + TheIP + Port + "/axis2/services/EQCloud/consumeQueue?queue=";
+    private final String mUrlUpdate = "http://" + TheIP + Port + "/axis2/services/EQCloud/searchQueueId?search=";
+
+	private String mName;
+	private int mId;
+	private int mLastPasswordCalled;
+	private int mNextPasswordAvailable;
+	private Ticket mTicket;
+	private boolean mFollow = false;
+
+    //Why did you created a nested class? Well... Ticket may be more complex in the future
+	private class Ticket {
+
+		private int mPassword;
+		private Calendar mCreated;
 		
-		private String queue;
-		private int password;
-		private int id;
-		private Calendar created; 
-		
-		Ticket(String queue, int number, int id){
-			
-			this.queue = queue;
-			this.password = number;
-			this.id = id;
-			this.created = Calendar.getInstance();		
-			
-		}
-		
-		String getName(){
-			
-			return this.queue;
-			
+		Ticket(int number){
+
+			this.mPassword = number;
+			this.mCreated = Calendar.getInstance();
+
 		}
 		
 		int getPassword(){
-			
-			return this.password;
-			
-		}
-		
-		int getID(){
-			
-			return this.id;
-			
+			return this.mPassword;
 		}
 		
 		Date getTimeOfCreation(){
-			
-			return created.getTime();
-			
-		}
-
-		@Override
-		public int compareTo(Ticket other) {
-			// TODO Auto-generated method stub
-			return this.queue.compareTo(other.queue);
+			return mCreated.getTime();
 		}
 		
 	}
 	
 	Queue(int id, String name, int actualNumber, int nextPassword){
 		
-		this.id = id;
-		this.actualNumber = actualNumber;
-		this.name = name;
-		this.nextPassword = nextPassword;
+		this.mId = id;
+		this.mLastPasswordCalled = actualNumber;
+		this.mName = name;
+		this.mNextPasswordAvailable = nextPassword;
 		
 	}
-	
-	
-	Ticket createTicket(){
+
+	boolean createTicket(){
 		
-		if (ticket != null)
-			return null;
+		if (mTicket != null) return false;
 		
 		HttpRequester httpRequester = new HttpRequester();
-		httpRequester.setRequest(urlEnter + this.id);
+		httpRequester.setRequest(mUrlEnter + this.mId);
 		String answer = httpRequester.getResponse();
 		
-		ticket = new Ticket(this.name, Integer.parseInt(answer), this.id);
+		mTicket = new Ticket(Integer.parseInt(answer));
 		
-		return ticket;
-		
+		return true;
+
 	}
 	
-	Ticket getTicket(){
-		
-		return this.ticket;
-		
+	int getTicket(){
+
+        if(this.mTicket == null) return -1;
+		return this.mTicket.getPassword();
+
 	}
-	
+
+    Date getTicketTimeOfCreation(){
+        return this.mTicket.getTimeOfCreation();
+    }
+
 	void removeTicket(){
-		
-		this.ticket = null;
-		
+		this.mTicket = null;
 	}
 	
 	void update(){
 		
 		HttpRequester httpRequester = new HttpRequester();
-		httpRequester.setRequest(urlUpdate + this.id);
+		httpRequester.setRequest(mUrlUpdate + this.mId);
 		ArrayList<String> answer = httpRequester.getResponses();
 		String[] temp = answer.get(0).split(":"); 
 		
-		this.actualNumber = Integer.parseInt(temp[NUMBER]);	
-		this.nextPassword = Integer.parseInt(temp[PASSWORD]);
+		this.mLastPasswordCalled = Integer.parseInt(temp[NUMBER]);
+		this.mNextPasswordAvailable = Integer.parseInt(temp[PASSWORD]);
 		
 	}
 	
 	boolean consume(){
 			
 			HttpRequester httpRequester = new HttpRequester();
-			httpRequester.setRequest(urlConsume + this.id);
+			httpRequester.setRequest(mUrlConsume + this.mId);
 			String answer = httpRequester.getResponse();
 			
-			if (answer.equals("true"))
-				return true;
-			else
-				return false;
-							
+			return answer.equals("true");
+
 	}
 	
 	String getName(){
-		
-		return this.name;
-		
+		return this.mName;
 	}
 	
 	int getID(){
-		
-		return this.id;
-		
+		return this.mId;
 	}
 	
 	int getNumber(){
-		
-		return this.actualNumber;
-		
+		return this.mLastPasswordCalled;
 	}
 	
-	int getNumberTicket(){
-		
-		return this.ticket.getPassword();		
-		
-	}
-	
-	public int getNextPassword() {
-		
-		return nextPassword;
+    int getNextPassword() {
+		return mNextPasswordAvailable;
 	}
 
-	void follow(boolean follow){
-		
-		this.follow = follow;
-		
-	}
+	void follow(boolean follow) {
+        this.mFollow = follow;
+    }
 
-	boolean isFollowing(){
-		
-		return this.follow;
-		
-	}
+	boolean isFollowing() {
+        return this.mFollow;
+    }
 
 	@Override
 	public int compareTo(Queue other) {
-		// TODO Auto-generated method stub
-		
-		return this.name.compareTo(other.name);
-			
+		return this.mName.compareTo(other.mName);
 	}
 
 }

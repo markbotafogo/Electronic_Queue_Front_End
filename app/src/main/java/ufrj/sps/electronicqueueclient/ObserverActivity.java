@@ -1,7 +1,5 @@
 package ufrj.sps.electronicqueueclient;
 
-import java.util.ArrayList;
-
 import android.os.Bundle;
 import android.os.Handler;
 import android.app.AlertDialog;
@@ -17,93 +15,99 @@ import android.widget.AdapterView;
 import android.widget.Toast;
 import android.widget.AdapterView.OnItemLongClickListener;
 
+import java.util.ArrayList;
+
+/**
+ * Lists the queues added by the user in the Observer. This activity live displays the queues
+ * showing to the user the progress of the selected ones.
+ */
+
 public class ObserverActivity extends ListActivity {
 
-	ArrayList<String> list;
-	ArrayList<Queue> scroll;
-	ObserverAdapter adapter;
-	Queue selectedItem;
-	private final Context context = this;	
-	
+	private ArrayList<String> mQueuesFound;
+	private ArrayList<Queue> mQueuesInCache;
+	private ObserverAdapter mAdapter;
+	private Queue mSelectedItem;
+
+	private final Context mContext = this;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
+
 		super.onCreate(savedInstanceState);
 		
 		setContentView(R.layout.activity_observer);
 		
 		Cache cache = (Cache) getApplicationContext();
 		cache = cache.getInstance();
-		
 		cache.setRunning(false);
 
 		Log.i("Debug","ObserverActivity started");
 		
 		Intent data = getIntent();
-		list = data.getStringArrayListExtra("list");
+		mQueuesFound = data.getStringArrayListExtra("list");
 		
-		if (list == null){
+		if (mQueuesFound == null){
 			
-			scroll = cache.getAll();
+			mQueuesInCache = cache.getAll();
 			
-			for(int i = 0; i < scroll.size(); i++){
+			for(int i = 0; i < mQueuesInCache.size(); i++){
 
-				Queue queue = scroll.get(i);
+				Queue queue = mQueuesInCache.get(i);
 				
-				if (!(queue.isFollowing()))			
-					scroll.remove(i);
-					
-				
+				if (!(queue.isFollowing())) mQueuesInCache.remove(i);
+
 			}
 			
 		}
 		else{
 			
-			scroll = new ArrayList<Queue>();
-			int max = list.size();
+			mQueuesInCache = new ArrayList<Queue>();
+			int max = mQueuesFound.size();
 			for(int i = 0; i < max; i++){
 
-				String[] temp = list.get(i).split(":");
-				Queue q1 = new Queue(Integer.parseInt(temp[0]), temp[1], Integer.parseInt(temp[2]), Integer.parseInt(temp[3]));
+				String[] temp = mQueuesFound.get(i).split(":");
+				Queue q1 = new Queue(Integer.parseInt(temp[0]), temp[1], Integer.parseInt(temp[2]),
+                        Integer.parseInt(temp[3]));
 				Queue q2 = cache.searchById(q1);
+
 				if (q2 == null)
-					scroll.add(q1);
+					mQueuesInCache.add(q1);
 				else{
-					scroll.add(q2);
+					mQueuesInCache.add(q2);
 				}
+
 			}
 			
-			cache.addAll(scroll);
+			cache.addAll(mQueuesInCache);
 			
 		}
 		
 		
-		adapter = new ObserverAdapter(this, android.R.layout.simple_list_item_2, scroll);
+		mAdapter = new ObserverAdapter(this, android.R.layout.simple_list_item_2, mQueuesInCache);
 		
 		OnItemLongClickListener longItemListener = new OnItemLongClickListener() {
 
 			@Override
 			public boolean onItemLongClick(AdapterView<?> parent, View view,
 					int position, long arg3) {
-				// TODO Auto-generated method stub
-				selectedItem = (Queue) parent.getItemAtPosition(position);
-				
+
+				mSelectedItem = (Queue) parent.getItemAtPosition(position);
+
 				Cache cache = (Cache) getApplicationContext();
 				cache = cache.getInstance();
 				
 				if(cache.isUserRegistered()){
 					
-					AlertDialog.Builder builder = new AlertDialog.Builder(context);
-					builder.setMessage("Do you want this queue to walk?");
+					AlertDialog.Builder builder = new AlertDialog.Builder(mContext);
+					builder.setMessage("Do you want to make this queue to advance?");
 					builder.setPositiveButton("Yes", new OnClickListener() {
 
 						@Override
 						public void onClick(DialogInterface dialog, int which) {
-							// TODO Auto-generated method stub
 							
-							selectedItem.consume();							
-								
-							Toast.makeText(context, "The queue was consumed.", Toast.LENGTH_SHORT).show();							
+							mSelectedItem.consume();
+							Toast.makeText(mContext, "The queue advanced.", Toast.LENGTH_SHORT).show();
 							
 							dialog.cancel();
 							
@@ -129,19 +133,21 @@ public class ObserverActivity extends ListActivity {
 				else{
 					
 					// create a dialog
-					AlertDialog.Builder builder = new AlertDialog.Builder(context);
+					AlertDialog.Builder builder = new AlertDialog.Builder(mContext);
 					builder.setMessage("Do you want to remove this queue from Observer?");
 					builder.setPositiveButton("Yes", new OnClickListener() {
 						
 						@Override
 						public void onClick(DialogInterface dialog, int which) {
 							
-							selectedItem.follow(false);
-							adapter.remove(selectedItem);
+							mSelectedItem.follow(false);
+							mAdapter.remove(mSelectedItem);
 							
-							Toast.makeText(context, "The queue was removed from the Observer", Toast.LENGTH_SHORT).show();							
+							Toast.makeText(mContext, "The queue was removed from the Observer",
+                                    Toast.LENGTH_SHORT).show();
 							
 							dialog.cancel();
+
 						}
 						
 					});	
@@ -152,6 +158,7 @@ public class ObserverActivity extends ListActivity {
 						public void onClick(DialogInterface dialog, int which) {
 							// TODO Auto-generated method stub
 							dialog.cancel();
+
 						}
 						
 					});
@@ -161,30 +168,16 @@ public class ObserverActivity extends ListActivity {
 				}
 				
 				return true;
+
 			}				
 						
 		};
 					
 		getListView().setOnItemLongClickListener(longItemListener);
 		
-		setListAdapter(adapter);
-		
-/*		for(;;){
-			
-			TimerTask task = new TimerTask() {
-				
-				@Override
-				public void run() {
-					// TODO Auto-generated method stub
-				
-				}
-			};
-			new Timer().schedule(task, 1000, 1000);
-						
-		}*/
+		setListAdapter(mAdapter);
 		
 	}
-	
 
 	public void onResume() {
 		
@@ -192,7 +185,6 @@ public class ObserverActivity extends ListActivity {
 		
 		Cache cache = (Cache) getApplicationContext();
 		cache = cache.getInstance();
-		
 		cache.setRunning(true);
 		
 		final Handler handler = new Handler();
@@ -200,44 +192,40 @@ public class ObserverActivity extends ListActivity {
 
 			@Override
 			public void run() {
-				// TODO Auto-generated method stub
 				
 				Cache cache = (Cache) getApplicationContext();
 				cache = cache.getInstance();
 				
-				if(cache.isRunning())
-				for(int i = 0; i < adapter.getCount(); i++){
-					
-					adapter.getItem(i).update();
-					
-				}
-				
-				adapter.notifyDataSetChanged();
+				if(cache.isRunning()){
+
+                    for(int i = 0; i < mAdapter.getCount(); i++){mAdapter.getItem(i).update();}
+
+                }
+
+				mAdapter.notifyDataSetChanged();
 				handler.postDelayed(this, 1000);
 				
 			}
 						
 		});
-		
 	}
 	
 	public void onPause(){
 		
 		super.onPause();
-		
-		Cache cache = (Cache) getApplicationContext();
-		cache = cache.getInstance();
-		
+
+        Cache cache = (Cache) getApplicationContext();
+        cache = cache.getInstance();
 		cache.setRunning(false);
 		
 	}
 	
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
+
 		// Inflate the menu; this adds items to the action bar if it is present.
 		getMenuInflater().inflate(R.menu.observer, menu);
 		return true;
-	}
 
-    
+	}
 }

@@ -1,48 +1,44 @@
 package ufrj.sps.electronicqueueclient;
 
-import java.util.ArrayList;
-import java.util.Collection;
-
-import ufrj.sps.electronicqueueclient.Queue.Ticket;
-
 import android.app.Application;
-import android.content.res.Configuration;
+
+import java.util.ArrayList;
+
+/**
+ * Provides persistence, while the mUser remain in the app, saving the queues to be visualized in the
+ * ObserverActivity and the mUser data if he/she has logged in (in case of users with privileges,
+ * like controllers and owners).
+ */
 
 public class Cache extends Application{
 	
-	private ArrayList<Queue> memory;
-	private ArrayList<Ticket> myTickets;
-	private static Cache singleton;
-	private boolean running = false;
-	private boolean userRegistered = false;
-	private String userName;
+	private ArrayList<Queue> mMemory;
+	private static Cache sSingleton;
+	private boolean mRunning = false;
+	private boolean mUserRegistered = false;
+	private String mUserName;
 	
     final static int NONE = 0;
 	final static int OWNER = 1;
 	final static int CONTROLLER = 2;
 	
-	private int user = NONE;
-	private int userID = -1;
+	private int mUser = NONE;
+	private int mUserId = -1;
 	
 	public void onCreate(){
 		
 		super.onCreate();
-		singleton = this;
-		memory = new ArrayList<Queue>();
-		myTickets = new ArrayList<Ticket>();
+		sSingleton = this;
+		mMemory = new ArrayList<Queue>();
 		
 	}
 	
 	Cache getInstance(){
-		
-		return singleton;
-		
+		return sSingleton;
 	}
 	
 	boolean add(Queue queue){
-		
-		return memory.add(queue);
-		
+		return mMemory.add(queue);
 	}
 	
 	void addAll(ArrayList<Queue> queues){
@@ -51,19 +47,16 @@ public class Cache extends Application{
 			
 			Queue temp = this.searchById(queues.get(i));
 			
-			if (temp == null)
-				memory.add(queues.get(i));		
+			if (temp == null) mMemory.add(queues.get(i));
 			
 		}
-		
 	}
 	
 	Queue searchById(Queue queue){
 		
-		for(int i = 0; i < memory.size(); i++ ){
+		for(int i = 0; i < mMemory.size(); i++ ){
 		
-			if(queue.getID() == memory.get(i).getID())
-				return memory.get(i);
+			if(queue.getID() == mMemory.get(i).getID()) return mMemory.get(i);
 		
 		}
 		
@@ -73,10 +66,9 @@ public class Cache extends Application{
 	
 	Queue searchById(int id){
 		
-		for(int i = 0; i < memory.size(); i++ ){
+		for(int i = 0; i < mMemory.size(); i++ ){
 		
-			if(id == memory.get(i).getID())
-				return memory.get(i);
+			if(id == mMemory.get(i).getID()) return mMemory.get(i);
 		
 		}
 		
@@ -88,110 +80,80 @@ public class Cache extends Application{
 		
 		ArrayList<Queue> temp = new ArrayList<Queue>();
 		
-		for(int i = 0; i < memory.size(); i++ ){
+		for(int i = 0; i < mMemory.size(); i++ ){
 		
-			if(queue.getName().equals(memory.get(i).getName()))
-				temp.add(memory.get(i));
+			if(queue.getName().equals(mMemory.get(i).getName())) temp.add(mMemory.get(i));
 		
 		}
 		
-		if (temp.isEmpty())
-			return null;
+		if (temp.isEmpty()) return null;
 		
 		return temp;
+
 	}
 	
 	ArrayList<Queue> getAll(){
-		
-		return memory;
-		
+		return mMemory;
 	}
 	
 	boolean isEmpty(){
-		
-		return memory.isEmpty();
-		
+		return mMemory.isEmpty();
 	}
-	
-	boolean addTicket(Ticket ticket){
-		
-		return myTickets.add(ticket);
-		
-	}
-	
+
+	/*TODO Rebuild this method returning an array of queues that have a ticket got by the user
 	ArrayList<Ticket> getAllTickets(){
-		
-		return myTickets;
-		
+
+		return mMyTickets;
+
+	}
+	*/
+
+    boolean isRunning() {
+		return mRunning;
 	}
 
-	public boolean isRunning() {
-		
-		return running;
-		
+    void setRunning(boolean running) {
+		this.mRunning = running;
 	}
 
-	public void setRunning(boolean running) {
-		
-		this.running = running;
-		
+    boolean isUserRegistered() {
+		return mUserRegistered;
 	}
 
-	public boolean isUserRegistered() {
-		
-		return userRegistered;
-		
+    void setUserRegistered(boolean userRegistered) {
+		this.mUserRegistered = userRegistered;
 	}
 
-	public void setUserRegistered(boolean userRegistered) {
-		
-		this.userRegistered = userRegistered;
-		
+    int getUser() {
+		return mUser;
 	}
 
-	public int getUser() {
-		
-		return user;
-		
+    void setUser(int user) {
+		this.mUser = user;
 	}
 
-	public void setUser(int user) {
-		
-		this.user = user;
-		
+    int getUserID() {
+		return mUserId;
 	}
 
-	public int getUserID() {
-		
-		return userID;
-		
+    void setUserID(int userID) {
+		this.mUserId = userID;
 	}
 
-	public void setUserID(int userID) {
-		
-		this.userID = userID;
-		
+    String getUserName() {
+		return mUserName;
 	}
 
-	public String getUserName() {
-		
-		return userName;
-		
-	}
-
-	public void setUserName(String userName) {
-		
-		this.userName = userName;
-		
+    void setUserName(String userName) {
+		this.mUserName = userName;
 	}
 	
-	public void logout(){
-		
-		this.user = Cache.NONE;
-		this.userID = -1;
-		this.userRegistered = false;
-		this.userName = null;
+    void logout(){
+
+		this.mUser = Cache.NONE;
+		this.mUserId = -1;
+		this.mUserRegistered = false;
+		this.mUserName = null;
 		
 	}
-	
 }

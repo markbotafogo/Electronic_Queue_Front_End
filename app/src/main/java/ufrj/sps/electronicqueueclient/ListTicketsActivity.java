@@ -1,12 +1,5 @@
 package ufrj.sps.electronicqueueclient;
 
-import java.text.DateFormat;
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
-
-import ufrj.sps.electronicqueueclient.Queue.Ticket;
-
 import android.os.Bundle;
 import android.app.AlertDialog;
 import android.app.ListActivity;
@@ -21,17 +14,28 @@ import android.widget.Toast;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.AdapterView.OnItemLongClickListener;
 
+import java.text.DateFormat;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
+
+/**
+ * Lists the tickets got by the user.
+ */
+
 public class ListTicketsActivity extends ListActivity {
 
-	ArrayList<Ticket> list;
-	ArrayList<Queue> scroll;
-	TicketArrayAdapter adapter;
-	Ticket selectedItem;
-	private final Context context = this;	
+	private ArrayList<Queue> mQueuesWithTicket;
+	private ArrayList<Queue> mQueuesInCache;
+	private TicketArrayAdapter mAdapter;
+	private Queue mSelectedItem;
+
+	private final Context mContext = this;
 	
 	@SuppressWarnings("deprecation")
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
+
 		super.onCreate(savedInstanceState);
 		
 		setContentView(R.layout.activity_list_tickets);
@@ -41,48 +45,44 @@ public class ListTicketsActivity extends ListActivity {
 
 		Log.i("Debug","ListTicketsActivity started");
 		
-		scroll = cache.getAll();
-		list = new ArrayList<Ticket>();
+		mQueuesInCache = cache.getAll();
+		mQueuesWithTicket = new ArrayList<Queue>();
 
-		for(int i = 0; i < scroll.size(); i++){
+		for(int i = 0; i < mQueuesInCache.size(); i++){
 
 			Calendar thisMoment = Calendar.getInstance();
-			Ticket ticket = scroll.get(i).getTicket();
+			int ticket = mQueuesInCache.get(i).getTicket();
 			
-			if(ticket != null){
+			if(ticket != -1){
 				
-				Date date = ticket.getTimeOfCreation();
+				Date date = mQueuesInCache.get(i).getTicketTimeOfCreation();
 				
-				if(thisMoment.get(Calendar.DAY_OF_MONTH) > date.getDate() && 
-				   thisMoment.get(Calendar.MONTH) >= date.getMonth() && 
-				   thisMoment.get(Calendar.YEAR) >= date.getYear() ){
+				if(thisMoment.get(Calendar.DAY_OF_MONTH) > date.getDate() &&
+                        thisMoment.get(Calendar.MONTH) >= date.getMonth() &&
+                        thisMoment.get(Calendar.YEAR) >= date.getYear()){
 							
-					scroll.get(i).removeTicket();
+					mQueuesInCache.get(i).removeTicket();
 							
 				}
 				else{
-					
-					list.add(ticket);
-					
+					mQueuesWithTicket.add(mQueuesInCache.get(i));
 				}
-				
 			}
-
 		}
-
 		
-		adapter = new TicketArrayAdapter(this, android.R.layout.simple_list_item_2, list);
+		mAdapter = new TicketArrayAdapter(this, android.R.layout.simple_list_item_2, mQueuesWithTicket);
 		
 		OnItemClickListener itemListener = new OnItemClickListener(){
 
 			@Override
 			public void onItemClick(AdapterView<?> parent, View view, int position, long arg3) {
-				// TODO Auto-generated method stub
-				selectedItem = (Ticket) parent.getItemAtPosition(position);
+
+				mSelectedItem = (Queue) parent.getItemAtPosition(position);
 				
 				DateFormat format = DateFormat.getDateTimeInstance();
 				
-				Toast.makeText(context, "QueueID:" + selectedItem.getID() + "\r\n" + "Date of Creation:" + format.format(selectedItem.getTimeOfCreation()), 
+				Toast.makeText(mContext, "QueueID:" + mSelectedItem.getID() + "\r\n" +
+                        "Date of Creation:" + format.format(mSelectedItem.getTicketTimeOfCreation()),
 						Toast.LENGTH_SHORT).show();
 							
 			}
@@ -94,28 +94,24 @@ public class ListTicketsActivity extends ListActivity {
 			@Override
 			public boolean onItemLongClick(AdapterView<?> parent, View view,
 					int position, long arg3) {
-				// TODO Auto-generated method stub
-				selectedItem = (Ticket) parent.getItemAtPosition(position);
+
+				mSelectedItem = (Queue) parent.getItemAtPosition(position);
 				
 				// create a dialog
-				AlertDialog.Builder builder = new AlertDialog.Builder(context);
+				AlertDialog.Builder builder = new AlertDialog.Builder(mContext);
 				builder.setMessage("Do you want to delete this ticket?");
 				builder.setPositiveButton("Yes", new OnClickListener() {
 					
 					@Override
 					public void onClick(DialogInterface dialog, int which) {
+
+						mSelectedItem.removeTicket();
+						mAdapter.remove(mSelectedItem);
 						
-						Cache cache = (Cache) getApplicationContext();
-						cache = cache.getInstance();
-						
-						Queue queue = cache.searchById(selectedItem.getID());
-						queue.removeTicket();
-						
-						adapter.remove(selectedItem);
-						
-						Toast.makeText(context, "The ticket was deleted.", Toast.LENGTH_SHORT).show();
+						Toast.makeText(mContext, "The ticket was deleted.", Toast.LENGTH_SHORT).show();
 						
 						dialog.cancel();
+
 					}
 					
 				});	
@@ -133,6 +129,7 @@ public class ListTicketsActivity extends ListActivity {
 				builder.show();
 				
 				return true;
+
 			}				
 						
 		};
@@ -140,18 +137,17 @@ public class ListTicketsActivity extends ListActivity {
 		getListView().setOnItemClickListener(itemListener);
 		getListView().setOnItemLongClickListener(longItemListener);
 		
-		setListAdapter(adapter);
+		setListAdapter(mAdapter);
 		
 	}
-	
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
+
 		// Inflate the menu; this adds items to the action bar if it is present.
 		getMenuInflater().inflate(R.menu.list_tickets, menu);
 		return true;
-		
-	}
 
+	}
 }
 	

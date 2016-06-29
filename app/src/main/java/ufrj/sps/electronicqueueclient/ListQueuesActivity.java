@@ -1,9 +1,5 @@
 package ufrj.sps.electronicqueueclient;
 
-import java.util.ArrayList;
-
-import ufrj.sps.electronicqueueclient.Queue.Ticket;
-
 import android.app.AlertDialog;
 import android.app.ListActivity;
 import android.content.Context;
@@ -19,17 +15,24 @@ import android.widget.AdapterView.OnItemLongClickListener;
 import android.widget.Toast;
 import android.widget.AdapterView.OnItemClickListener;
 
+import java.util.ArrayList;
+
+/**
+ * Lists the queues found by the SearchActivity
+ */
 
 public class ListQueuesActivity extends ListActivity {
 
-	ArrayList<String> list;
-	ArrayList<Queue> scroll;
-	QueueArrayAdapter adapter;
-	Queue selectedItem;
-	private final Context context = this;	
+	private ArrayList<String> mQueuesFoundBySearch;
+	private ArrayList<Queue> mQueuesInCache;
+	private QueueArrayAdapter mAdapter;
+	private Queue mSelectedQueue;
+
+	private final Context mContext = this;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
+
 		super.onCreate(savedInstanceState);
 		
 		setContentView(R.layout.activity_list_queues);
@@ -41,81 +44,79 @@ public class ListQueuesActivity extends ListActivity {
 		
 		Intent data = getIntent();
 		
-		list = data.getStringArrayListExtra("list");
-		
-		if(list == null)
-			scroll = cache.getAll();
+		mQueuesFoundBySearch = data.getStringArrayListExtra("list");
+
+		if(mQueuesFoundBySearch == null){
+            mQueuesInCache = cache.getAll();
+        }
 		else{
 			
-			scroll = new ArrayList<Queue>();
-			int max = list.size();
+			mQueuesInCache = new ArrayList<Queue>();
+			int max = mQueuesFoundBySearch.size();
 			for(int i = 0; i < max; i++){
 
-				String[] temp = list.get(i).split(":");
+				String[] temp = mQueuesFoundBySearch.get(i).split(":");
 				Queue q1 = new Queue(Integer.parseInt(temp[0]), temp[1], Integer.parseInt(temp[2]), Integer.parseInt(temp[3]));
 				Queue q2 = cache.searchById(q1);
 				if (q2 == null)
-					scroll.add(q1);
+					mQueuesInCache.add(q1);
 				else{
-					scroll.add(q2);
+					mQueuesInCache.add(q2);
 				}
+
 			}
 			
-			cache.addAll(scroll);
+			cache.addAll(mQueuesInCache);
 			
 		}
 		
-		adapter = new QueueArrayAdapter(this, android.R.layout.simple_list_item_2, scroll);
+		mAdapter = new QueueArrayAdapter(this, android.R.layout.simple_list_item_2, mQueuesInCache);
 		
 		OnItemClickListener itemListener = new OnItemClickListener(){
 
 			@Override
 			public void onItemClick(AdapterView<?> parent, View view, int position, long arg3) {
-				// TODO Auto-generated method stub
-				selectedItem = (Queue) parent.getItemAtPosition(position);
+
+				mSelectedQueue = (Queue) parent.getItemAtPosition(position);
+				mSelectedQueue.follow(true);
 				
-				selectedItem.follow(true);
-				
-				Toast.makeText(context, "You have added this queue to the Observer!", Toast.LENGTH_SHORT).show();
-				
-			
+				Toast.makeText(mContext, "You have added this queue to the Observer!", Toast.LENGTH_SHORT).show();
+
 			}
-		
 		};
 		
 		OnItemLongClickListener longItemListener = new OnItemLongClickListener() {
 
 			@Override
-			public boolean onItemLongClick(AdapterView<?> parent, View view,
-					int position, long arg3) {
-				// TODO Auto-generated method stub
-				selectedItem = (Queue) parent.getItemAtPosition(position);
+			public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long arg3) {
+
+				mSelectedQueue = (Queue) parent.getItemAtPosition(position);
 				
 				// create a dialog
-				AlertDialog.Builder builder = new AlertDialog.Builder(context);
+				AlertDialog.Builder builder = new AlertDialog.Builder(mContext);
 				builder.setMessage("Do you want to enter in this queue?");
 				builder.setPositiveButton("Yes", new OnClickListener() {
 					
 					@Override
 					public void onClick(DialogInterface dialog, int which) {
+
+						boolean ticket = mSelectedQueue.createTicket();
 						
-						Cache cache = (Cache) getApplicationContext();
-						cache = cache.getInstance();
-						Ticket ticket = selectedItem.createTicket();
-						
-						if (ticket == null){
+						if (!ticket){
 							
-							Toast.makeText(context, "You already got a ticket from this queue!", Toast.LENGTH_SHORT).show();
+							Toast.makeText(mContext, "You already got a ticket from this queue!",
+                                    Toast.LENGTH_SHORT).show();
 							
 						}
 						else{
 							
-							Toast.makeText(context, "Success!! The ticket was taken.", Toast.LENGTH_SHORT).show();
-							cache.addTicket(ticket);
+							Toast.makeText(mContext, "Success!! The ticket was taken.",
+                                    Toast.LENGTH_SHORT).show();
 							
 						}	
 						
 						dialog.cancel();
+
 					}
 					
 				});	
@@ -133,6 +134,7 @@ public class ListQueuesActivity extends ListActivity {
 				builder.show();
 				
 				return true;
+
 			}				
 						
 		};
@@ -140,16 +142,16 @@ public class ListQueuesActivity extends ListActivity {
 		getListView().setOnItemClickListener(itemListener);
 		getListView().setOnItemLongClickListener(longItemListener);
 		
-		setListAdapter(adapter);
+		setListAdapter(mAdapter);
 		
 	}
-	
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
+
 		// Inflate the menu; this adds items to the action bar if it is present.
 		getMenuInflater().inflate(R.menu.list_queues, menu);
 		return true;
-	}
 
+	}
 }
