@@ -2,6 +2,7 @@ package ufrj.sps.electronicqueueclient;
 
 import android.app.AlertDialog;
 import android.app.ListActivity;
+import android.app.SearchManager;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -17,11 +18,16 @@ import android.widget.AdapterView.OnItemClickListener;
 
 import java.util.ArrayList;
 
+import static ufrj.sps.electronicqueueclient.MainActivity.Port;
+import static ufrj.sps.electronicqueueclient.MainActivity.TheIP;
+
 /**
  * Lists the queues found by the SearchActivity
  */
 
 public class ListQueuesActivity extends ListActivity {
+
+    private final static String mUrlName = "http://" + TheIP + Port + "/axis2/services/EQCloud/searchQueueName?search=";
 
 	private ArrayList<String> mQueuesFoundBySearch;
 	private ArrayList<Queue> mQueuesInCache;
@@ -34,24 +40,26 @@ public class ListQueuesActivity extends ListActivity {
 	protected void onCreate(Bundle savedInstanceState) {
 
 		super.onCreate(savedInstanceState);
-		
 		setContentView(R.layout.activity_list_queues);
 		
 		Cache cache = (Cache) getApplicationContext();
-		cache = cache.getInstance();
 
 		Log.i("Debug","ListQueuesActivity started");
-		
-		Intent data = getIntent();
-		
-		mQueuesFoundBySearch = data.getStringArrayListExtra("list");
+		Intent intent = getIntent();
+
+        if (Intent.ACTION_SEARCH.equals(intent.getAction())) {
+
+            String query = intent.getStringExtra(SearchManager.QUERY);
+            mQueuesFoundBySearch = doMySearch(query);
+
+        }
 
 		if(mQueuesFoundBySearch == null){
             mQueuesInCache = cache.getAll();
         }
 		else{
 			
-			mQueuesInCache = new ArrayList<Queue>();
+			mQueuesInCache = new ArrayList<>();
 			int max = mQueuesFoundBySearch.size();
 			for(int i = 0; i < max; i++){
 
@@ -145,6 +153,15 @@ public class ListQueuesActivity extends ListActivity {
 		setListAdapter(mAdapter);
 		
 	}
+
+    private ArrayList<String> doMySearch (String query){
+
+        HttpRequester httpRequester = new HttpRequester();
+        httpRequester.setRequest(mUrlName + query);
+
+        return httpRequester.getResponses();
+
+    }
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {

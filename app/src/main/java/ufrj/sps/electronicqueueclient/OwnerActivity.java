@@ -34,7 +34,6 @@ public class OwnerActivity extends Activity {
 		setContentView(R.layout.activity_owner);
 		
 		Cache cache = (Cache) getApplicationContext();
-		cache = cache.getInstance();
 		
 		TextView ownerName = (TextView) findViewById(R.id.TextView01);
 		ownerName.setText("Welcome " + cache.getUserName());
@@ -47,7 +46,6 @@ public class OwnerActivity extends Activity {
 			public void onClick(View arg0) {
 				
 				Cache cache = (Cache) getApplicationContext();
-				cache = cache.getInstance();
 				
 				HttpRequester httpRequester = new HttpRequester();
 				httpRequester.setRequest(mUrlSearchQueueByOwner + Integer.toString(cache.getUserID()));
@@ -94,7 +92,6 @@ public class OwnerActivity extends Activity {
 			public void onClick(View v) {
 				
 				Cache cache = (Cache) getApplicationContext();
-				cache = cache.getInstance();
 				cache.logout();
 				finish();
 

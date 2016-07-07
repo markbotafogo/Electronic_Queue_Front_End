@@ -39,7 +39,6 @@ public class ObserverActivity extends ListActivity {
 		setContentView(R.layout.activity_observer);
 		
 		Cache cache = (Cache) getApplicationContext();
-		cache = cache.getInstance();
 		cache.setRunning(false);
 
 		Log.i("Debug","ObserverActivity started");
@@ -62,7 +61,7 @@ public class ObserverActivity extends ListActivity {
 		}
 		else{
 			
-			mQueuesInCache = new ArrayList<Queue>();
+			mQueuesInCache = new ArrayList<>();
 			int max = mQueuesFound.size();
 			for(int i = 0; i < max; i++){
 
@@ -95,7 +94,6 @@ public class ObserverActivity extends ListActivity {
 				mSelectedItem = (Queue) parent.getItemAtPosition(position);
 
 				Cache cache = (Cache) getApplicationContext();
-				cache = cache.getInstance();
 				
 				if(cache.isUserRegistered()){
 					
@@ -184,7 +182,6 @@ public class ObserverActivity extends ListActivity {
 		super.onResume();
 		
 		Cache cache = (Cache) getApplicationContext();
-		cache = cache.getInstance();
 		cache.setRunning(true);
 		
 		final Handler handler = new Handler();
@@ -194,7 +191,6 @@ public class ObserverActivity extends ListActivity {
 			public void run() {
 				
 				Cache cache = (Cache) getApplicationContext();
-				cache = cache.getInstance();
 				
 				if(cache.isRunning()){
 
@@ -214,8 +210,7 @@ public class ObserverActivity extends ListActivity {
 		
 		super.onPause();
 
-        Cache cache = (Cache) getApplicationContext();
-        cache = cache.getInstance();
+		Cache cache = (Cache) getApplicationContext();
 		cache.setRunning(false);
 		
 	}

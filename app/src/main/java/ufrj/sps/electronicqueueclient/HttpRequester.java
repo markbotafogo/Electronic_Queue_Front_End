@@ -42,7 +42,7 @@ class HttpRequester {
 
     ArrayList<String> getResponses() {
 
-		ArrayList<String> list = new ArrayList<String>();
+		ArrayList<String> list = new ArrayList<>();
 
 		Element element = (Element) mDocument.getChildNodes().item(0);
 		NodeList nodeList = element.getElementsByTagName("ns:return");

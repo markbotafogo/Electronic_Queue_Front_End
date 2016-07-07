@@ -26,8 +26,8 @@ import static ufrj.sps.electronicqueueclient.MainActivity.TheIP;
 
 public class LoginActivity extends Activity {
 
-    private static String urlOwner = "http://" + TheIP + Port + "/axis2/services/EQCloud/authenticateOwner?login=";
-    private static String urlController = "http://" + TheIP + Port + "/axis2/services/EQCloud/authenticateController?login=";
+    private final static String urlOwner = "http://" + TheIP + Port + "/axis2/services/EQCloud/authenticateOwner?login=";
+    private final static String urlController = "http://" + TheIP + Port + "/axis2/services/EQCloud/authenticateController?login=";
 
 	private final static int NO_USER = 1;
 	private final static int WRONG_PASSWORD = 2;
@@ -224,7 +224,6 @@ public class LoginActivity extends Activity {
 			// TODO: attempt authentication against a network service.
 			
 			Cache cache = (Cache) getApplicationContext();
-			cache = cache.getInstance();
 
 			HttpRequester httpRequester = new HttpRequester();
 			httpRequester.setRequest(urlOwner + mUsername + "&password=" + mPassword);

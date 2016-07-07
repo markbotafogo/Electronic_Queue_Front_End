@@ -16,12 +16,12 @@ import static ufrj.sps.electronicqueueclient.MainActivity.TheIP;
 
 public class Queue implements Comparable<Queue>{
 
-    private static final int NUMBER = 2;
-    private static final int PASSWORD = 3;
+    private final static int NUMBER = 2;
+    private final static int PASSWORD = 3;
 
-    private final String mUrlEnter = "http://" + TheIP + Port + "/axis2/services/EQCloud/enterQueue?queue=";
-    private final String mUrlConsume = "http://" + TheIP + Port + "/axis2/services/EQCloud/consumeQueue?queue=";
-    private final String mUrlUpdate = "http://" + TheIP + Port + "/axis2/services/EQCloud/searchQueueId?search=";
+    private final static String mUrlEnter = "http://" + TheIP + Port + "/axis2/services/EQCloud/enterQueue?queue=";
+    private final static String mUrlConsume = "http://" + TheIP + Port + "/axis2/services/EQCloud/consumeQueue?queue=";
+    private final static String mUrlUpdate = "http://" + TheIP + Port + "/axis2/services/EQCloud/searchQueueId?search=";
 
 	private String mName;
 	private int mId;
@@ -30,7 +30,7 @@ public class Queue implements Comparable<Queue>{
 	private Ticket mTicket;
 	private boolean mFollow = false;
 
-    //Why did you created a nested class? Well... Ticket may be more complex in the future
+    //Why did you created a nested class? Well... Ticket may become more complex in the future
 	private class Ticket {
 
 		private int mPassword;

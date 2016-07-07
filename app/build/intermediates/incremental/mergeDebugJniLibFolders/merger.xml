@@ -1,2 +1,2 @@
 <?xml version="1.0" encoding="utf-8"?>
-<merger version="3"><dataSet config="main"><source path="C:\Users\MarcosPaulo\AndroidStudioProjects\Electronic Queue Client\app\src\main\jniLibs"/></dataSet><dataSet config="debug"><source path="C:\Users\MarcosPaulo\AndroidStudioProjects\Electronic Queue Client\app\src\debug\jniLibs"/></dataSet></merger>
+<merger version="3"><dataSet config="main"><source path="C:\Users\MarcosPaulo\Documents\GitHub\Electronic_Queue_Front_End\app\src\main\jniLibs"/></dataSet><dataSet config="debug"><source path="C:\Users\MarcosPaulo\Documents\GitHub\Electronic_Queue_Front_End\app\src\debug\jniLibs"/></dataSet></merger>

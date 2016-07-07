@@ -1,18 +1,10 @@
 [
     {
-        "merged": "C:\\Users\\MarcosPaulo\\AndroidStudioProjects\\Electronic Queue Client\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi\\ic_launcher.png",
-        "source": "C:\\Users\\MarcosPaulo\\AndroidStudioProjects\\Electronic Queue Client\\app\\src\\main\\res\\drawable-mdpi\\ic_launcher.png"
-    },
-    {
-        "merged": "C:\\Users\\MarcosPaulo\\Documents\\GitHub\\Electronic-Queue\\Electronic Queue Front End\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi\\ic_launcher.png",
-        "source": "C:\\Users\\MarcosPaulo\\Documents\\GitHub\\Electronic-Queue\\Electronic Queue Front End\\app\\src\\main\\res\\drawable-mdpi\\ic_launcher.png"
+        "merged": "C:\\Users\\MarcosPaulo\\Documents\\GitHub\\Electronic_Queue_Front_End\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi\\ic_home_white_36dp.png",
+        "source": "C:\\Users\\MarcosPaulo\\Documents\\GitHub\\Electronic_Queue_Front_End\\app\\src\\main\\res\\drawable-mdpi\\ic_home_white_36dp.png"
     },
     {
         "merged": "C:\\Users\\MarcosPaulo\\Documents\\GitHub\\Electronic_Queue_Front_End\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi\\ic_launcher.png",
         "source": "C:\\Users\\MarcosPaulo\\Documents\\GitHub\\Electronic_Queue_Front_End\\app\\src\\main\\res\\drawable-mdpi\\ic_launcher.png"
-    },
-    {
-        "merged": "C:\\Users\\MarcosPaulo\\Documents\\GitHub\\Electronic-Queue\\Electronic_Queue_Front_End\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi\\ic_launcher.png",
-        "source": "C:\\Users\\MarcosPaulo\\Documents\\GitHub\\Electronic-Queue\\Electronic_Queue_Front_End\\app\\src\\main\\res\\drawable-mdpi\\ic_launcher.png"
     }
 ]

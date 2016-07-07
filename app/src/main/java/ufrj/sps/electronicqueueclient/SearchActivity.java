@@ -3,6 +3,7 @@ package ufrj.sps.electronicqueueclient;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -35,6 +36,7 @@ public class SearchActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		
 		setContentView(R.layout.activity_search);
+		Log.i("Debug","SearchActivity started");
 
 		Intent data = getIntent();
 		mType = data.getStringExtra("searchType");
@@ -43,9 +45,9 @@ public class SearchActivity extends Activity {
 		TextView searchTypeView = (TextView) findViewById(R.id.textView1);
 		
 		if (mType.equals("ID"))
-			searchTypeView.setText(R.string.searchID);
+			searchTypeView.setText(R.string.enterid2);
 		else
-			searchTypeView.setText(R.string.searchName);
+			searchTypeView.setText(R.string.enter_queue_name);
 		
 		Button searchButton = (Button) findViewById(R.id.button1);
 		searchButton.setOnClickListener(new OnClickListener() {

@@ -19,7 +19,7 @@ import static ufrj.sps.electronicqueueclient.MainActivity.TheIP;
 
 public class CreateQueueActivity extends Activity {
 
-	private String mUrlCreateQueue = "http://" + TheIP  + Port + "/axis2/services/EQCloud/createQueue?name=";
+	private final static String mUrlCreateQueue = "http://" + TheIP  + Port + "/axis2/services/EQCloud/createQueue?name=";
 
 	private Context mContext = this;
 
@@ -40,7 +40,6 @@ public class CreateQueueActivity extends Activity {
 			public void onClick(View arg0) {
 				
 				Cache cache = (Cache) getApplicationContext();
-				cache = cache.getInstance();
 				
 				String queueName = mNameField.getText().toString();
 				

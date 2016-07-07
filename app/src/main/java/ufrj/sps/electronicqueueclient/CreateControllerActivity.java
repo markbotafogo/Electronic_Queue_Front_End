@@ -41,7 +41,6 @@ public class CreateControllerActivity extends Activity {
 			public void onClick(View arg0) {
 				
 				Cache cache = (Cache) getApplicationContext();
-				cache = cache.getInstance();
 				
 				String controllerLogin = mLoginField.getText().toString();
 				String controllerPassword = mPasswordField.getText().toString();

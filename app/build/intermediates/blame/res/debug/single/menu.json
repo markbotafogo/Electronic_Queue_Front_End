@@ -4,76 +4,28 @@
         "source": "C:\\Users\\MarcosPaulo\\Documents\\GitHub\\Electronic_Queue_Front_End\\app\\src\\main\\res\\menu\\login.xml"
     },
     {
-        "merged": "C:\\Users\\MarcosPaulo\\Documents\\GitHub\\Electronic-Queue\\Electronic_Queue_Front_End\\app\\build\\intermediates\\res\\merged\\debug\\menu\\login.xml",
-        "source": "C:\\Users\\MarcosPaulo\\Documents\\GitHub\\Electronic-Queue\\Electronic_Queue_Front_End\\app\\src\\main\\res\\menu\\login.xml"
+        "merged": "C:\\Users\\MarcosPaulo\\Documents\\GitHub\\Electronic_Queue_Front_End\\app\\build\\intermediates\\res\\merged\\debug\\menu\\search.xml",
+        "source": "C:\\Users\\MarcosPaulo\\Documents\\GitHub\\Electronic_Queue_Front_End\\app\\src\\main\\res\\menu\\search.xml"
     },
     {
         "merged": "C:\\Users\\MarcosPaulo\\Documents\\GitHub\\Electronic_Queue_Front_End\\app\\build\\intermediates\\res\\merged\\debug\\menu\\main.xml",
         "source": "C:\\Users\\MarcosPaulo\\Documents\\GitHub\\Electronic_Queue_Front_End\\app\\src\\main\\res\\menu\\main.xml"
     },
     {
-        "merged": "C:\\Users\\MarcosPaulo\\Documents\\GitHub\\Electronic-Queue\\Electronic Queue Front End\\app\\build\\intermediates\\res\\merged\\debug\\menu\\login.xml",
-        "source": "C:\\Users\\MarcosPaulo\\Documents\\GitHub\\Electronic-Queue\\Electronic Queue Front End\\app\\src\\main\\res\\menu\\login.xml"
-    },
-    {
-        "merged": "C:\\Users\\MarcosPaulo\\Documents\\GitHub\\Electronic-Queue\\Electronic_Queue_Front_End\\app\\build\\intermediates\\res\\merged\\debug\\menu\\list_queues.xml",
-        "source": "C:\\Users\\MarcosPaulo\\Documents\\GitHub\\Electronic-Queue\\Electronic_Queue_Front_End\\app\\src\\main\\res\\menu\\list_queues.xml"
-    },
-    {
-        "merged": "C:\\Users\\MarcosPaulo\\Documents\\GitHub\\Electronic-Queue\\Electronic_Queue_Front_End\\app\\build\\intermediates\\res\\merged\\debug\\menu\\create_queue.xml",
-        "source": "C:\\Users\\MarcosPaulo\\Documents\\GitHub\\Electronic-Queue\\Electronic_Queue_Front_End\\app\\src\\main\\res\\menu\\create_queue.xml"
-    },
-    {
-        "merged": "C:\\Users\\MarcosPaulo\\Documents\\GitHub\\Electronic-Queue\\Electronic Queue Front End\\app\\build\\intermediates\\res\\merged\\debug\\menu\\controller.xml",
-        "source": "C:\\Users\\MarcosPaulo\\Documents\\GitHub\\Electronic-Queue\\Electronic Queue Front End\\app\\src\\main\\res\\menu\\controller.xml"
-    },
-    {
-        "merged": "C:\\Users\\MarcosPaulo\\Documents\\GitHub\\Electronic-Queue\\Electronic Queue Front End\\app\\build\\intermediates\\res\\merged\\debug\\menu\\owner.xml",
-        "source": "C:\\Users\\MarcosPaulo\\Documents\\GitHub\\Electronic-Queue\\Electronic Queue Front End\\app\\src\\main\\res\\menu\\owner.xml"
-    },
-    {
-        "merged": "C:\\Users\\MarcosPaulo\\Documents\\GitHub\\Electronic-Queue\\Electronic_Queue_Front_End\\app\\build\\intermediates\\res\\merged\\debug\\menu\\list_tickets.xml",
-        "source": "C:\\Users\\MarcosPaulo\\Documents\\GitHub\\Electronic-Queue\\Electronic_Queue_Front_End\\app\\src\\main\\res\\menu\\list_tickets.xml"
+        "merged": "C:\\Users\\MarcosPaulo\\Documents\\GitHub\\Electronic_Queue_Front_End\\app\\build\\intermediates\\res\\merged\\debug\\menu\\observer.xml",
+        "source": "C:\\Users\\MarcosPaulo\\Documents\\GitHub\\Electronic_Queue_Front_End\\app\\src\\main\\res\\menu\\observer.xml"
     },
     {
         "merged": "C:\\Users\\MarcosPaulo\\Documents\\GitHub\\Electronic_Queue_Front_End\\app\\build\\intermediates\\res\\merged\\debug\\menu\\create_queue.xml",
         "source": "C:\\Users\\MarcosPaulo\\Documents\\GitHub\\Electronic_Queue_Front_End\\app\\src\\main\\res\\menu\\create_queue.xml"
     },
     {
+        "merged": "C:\\Users\\MarcosPaulo\\Documents\\GitHub\\Electronic_Queue_Front_End\\app\\build\\intermediates\\res\\merged\\debug\\menu\\create_controller.xml",
+        "source": "C:\\Users\\MarcosPaulo\\Documents\\GitHub\\Electronic_Queue_Front_End\\app\\src\\main\\res\\menu\\create_controller.xml"
+    },
+    {
         "merged": "C:\\Users\\MarcosPaulo\\Documents\\GitHub\\Electronic_Queue_Front_End\\app\\build\\intermediates\\res\\merged\\debug\\menu\\list_tickets.xml",
         "source": "C:\\Users\\MarcosPaulo\\Documents\\GitHub\\Electronic_Queue_Front_End\\app\\src\\main\\res\\menu\\list_tickets.xml"
-    },
-    {
-        "merged": "C:\\Users\\MarcosPaulo\\Documents\\GitHub\\Electronic-Queue\\Electronic_Queue_Front_End\\app\\build\\intermediates\\res\\merged\\debug\\menu\\observer.xml",
-        "source": "C:\\Users\\MarcosPaulo\\Documents\\GitHub\\Electronic-Queue\\Electronic_Queue_Front_End\\app\\src\\main\\res\\menu\\observer.xml"
-    },
-    {
-        "merged": "C:\\Users\\MarcosPaulo\\AndroidStudioProjects\\Electronic Queue Client\\app\\build\\intermediates\\res\\merged\\debug\\menu\\list_tickets.xml",
-        "source": "C:\\Users\\MarcosPaulo\\AndroidStudioProjects\\Electronic Queue Client\\app\\src\\main\\res\\menu\\list_tickets.xml"
-    },
-    {
-        "merged": "C:\\Users\\MarcosPaulo\\Documents\\GitHub\\Electronic-Queue\\Electronic_Queue_Front_End\\app\\build\\intermediates\\res\\merged\\debug\\menu\\owner.xml",
-        "source": "C:\\Users\\MarcosPaulo\\Documents\\GitHub\\Electronic-Queue\\Electronic_Queue_Front_End\\app\\src\\main\\res\\menu\\owner.xml"
-    },
-    {
-        "merged": "C:\\Users\\MarcosPaulo\\Documents\\GitHub\\Electronic-Queue\\Electronic_Queue_Front_End\\app\\build\\intermediates\\res\\merged\\debug\\menu\\controller.xml",
-        "source": "C:\\Users\\MarcosPaulo\\Documents\\GitHub\\Electronic-Queue\\Electronic_Queue_Front_End\\app\\src\\main\\res\\menu\\controller.xml"
-    },
-    {
-        "merged": "C:\\Users\\MarcosPaulo\\AndroidStudioProjects\\Electronic Queue Client\\app\\build\\intermediates\\res\\merged\\debug\\menu\\create_queue.xml",
-        "source": "C:\\Users\\MarcosPaulo\\AndroidStudioProjects\\Electronic Queue Client\\app\\src\\main\\res\\menu\\create_queue.xml"
-    },
-    {
-        "merged": "C:\\Users\\MarcosPaulo\\AndroidStudioProjects\\Electronic Queue Client\\app\\build\\intermediates\\res\\merged\\debug\\menu\\main.xml",
-        "source": "C:\\Users\\MarcosPaulo\\AndroidStudioProjects\\Electronic Queue Client\\app\\src\\main\\res\\menu\\main.xml"
-    },
-    {
-        "merged": "C:\\Users\\MarcosPaulo\\Documents\\GitHub\\Electronic-Queue\\Electronic_Queue_Front_End\\app\\build\\intermediates\\res\\merged\\debug\\menu\\search.xml",
-        "source": "C:\\Users\\MarcosPaulo\\Documents\\GitHub\\Electronic-Queue\\Electronic_Queue_Front_End\\app\\src\\main\\res\\menu\\search.xml"
-    },
-    {
-        "merged": "C:\\Users\\MarcosPaulo\\AndroidStudioProjects\\Electronic Queue Client\\app\\build\\intermediates\\res\\merged\\debug\\menu\\login.xml",
-        "source": "C:\\Users\\MarcosPaulo\\AndroidStudioProjects\\Electronic Queue Client\\app\\src\\main\\res\\menu\\login.xml"
     },
     {
         "merged": "C:\\Users\\MarcosPaulo\\Documents\\GitHub\\Electronic_Queue_Front_End\\app\\build\\intermediates\\res\\merged\\debug\\menu\\owner.xml",
@@ -82,78 +34,6 @@
     {
         "merged": "C:\\Users\\MarcosPaulo\\Documents\\GitHub\\Electronic_Queue_Front_End\\app\\build\\intermediates\\res\\merged\\debug\\menu\\controller.xml",
         "source": "C:\\Users\\MarcosPaulo\\Documents\\GitHub\\Electronic_Queue_Front_End\\app\\src\\main\\res\\menu\\controller.xml"
-    },
-    {
-        "merged": "C:\\Users\\MarcosPaulo\\Documents\\GitHub\\Electronic-Queue\\Electronic_Queue_Front_End\\app\\build\\intermediates\\res\\merged\\debug\\menu\\create_controller.xml",
-        "source": "C:\\Users\\MarcosPaulo\\Documents\\GitHub\\Electronic-Queue\\Electronic_Queue_Front_End\\app\\src\\main\\res\\menu\\create_controller.xml"
-    },
-    {
-        "merged": "C:\\Users\\MarcosPaulo\\AndroidStudioProjects\\Electronic Queue Client\\app\\build\\intermediates\\res\\merged\\debug\\menu\\controller.xml",
-        "source": "C:\\Users\\MarcosPaulo\\AndroidStudioProjects\\Electronic Queue Client\\app\\src\\main\\res\\menu\\controller.xml"
-    },
-    {
-        "merged": "C:\\Users\\MarcosPaulo\\Documents\\GitHub\\Electronic_Queue_Front_End\\app\\build\\intermediates\\res\\merged\\debug\\menu\\search.xml",
-        "source": "C:\\Users\\MarcosPaulo\\Documents\\GitHub\\Electronic_Queue_Front_End\\app\\src\\main\\res\\menu\\search.xml"
-    },
-    {
-        "merged": "C:\\Users\\MarcosPaulo\\Documents\\GitHub\\Electronic-Queue\\Electronic Queue Front End\\app\\build\\intermediates\\res\\merged\\debug\\menu\\create_queue.xml",
-        "source": "C:\\Users\\MarcosPaulo\\Documents\\GitHub\\Electronic-Queue\\Electronic Queue Front End\\app\\src\\main\\res\\menu\\create_queue.xml"
-    },
-    {
-        "merged": "C:\\Users\\MarcosPaulo\\Documents\\GitHub\\Electronic-Queue\\Electronic Queue Front End\\app\\build\\intermediates\\res\\merged\\debug\\menu\\list_queues.xml",
-        "source": "C:\\Users\\MarcosPaulo\\Documents\\GitHub\\Electronic-Queue\\Electronic Queue Front End\\app\\src\\main\\res\\menu\\list_queues.xml"
-    },
-    {
-        "merged": "C:\\Users\\MarcosPaulo\\AndroidStudioProjects\\Electronic Queue Client\\app\\build\\intermediates\\res\\merged\\debug\\menu\\observer.xml",
-        "source": "C:\\Users\\MarcosPaulo\\AndroidStudioProjects\\Electronic Queue Client\\app\\src\\main\\res\\menu\\observer.xml"
-    },
-    {
-        "merged": "C:\\Users\\MarcosPaulo\\Documents\\GitHub\\Electronic-Queue\\Electronic_Queue_Front_End\\app\\build\\intermediates\\res\\merged\\debug\\menu\\main.xml",
-        "source": "C:\\Users\\MarcosPaulo\\Documents\\GitHub\\Electronic-Queue\\Electronic_Queue_Front_End\\app\\src\\main\\res\\menu\\main.xml"
-    },
-    {
-        "merged": "C:\\Users\\MarcosPaulo\\Documents\\GitHub\\Electronic_Queue_Front_End\\app\\build\\intermediates\\res\\merged\\debug\\menu\\observer.xml",
-        "source": "C:\\Users\\MarcosPaulo\\Documents\\GitHub\\Electronic_Queue_Front_End\\app\\src\\main\\res\\menu\\observer.xml"
-    },
-    {
-        "merged": "C:\\Users\\MarcosPaulo\\AndroidStudioProjects\\Electronic Queue Client\\app\\build\\intermediates\\res\\merged\\debug\\menu\\owner.xml",
-        "source": "C:\\Users\\MarcosPaulo\\AndroidStudioProjects\\Electronic Queue Client\\app\\src\\main\\res\\menu\\owner.xml"
-    },
-    {
-        "merged": "C:\\Users\\MarcosPaulo\\Documents\\GitHub\\Electronic_Queue_Front_End\\app\\build\\intermediates\\res\\merged\\debug\\menu\\create_controller.xml",
-        "source": "C:\\Users\\MarcosPaulo\\Documents\\GitHub\\Electronic_Queue_Front_End\\app\\src\\main\\res\\menu\\create_controller.xml"
-    },
-    {
-        "merged": "C:\\Users\\MarcosPaulo\\AndroidStudioProjects\\Electronic Queue Client\\app\\build\\intermediates\\res\\merged\\debug\\menu\\list_queues.xml",
-        "source": "C:\\Users\\MarcosPaulo\\AndroidStudioProjects\\Electronic Queue Client\\app\\src\\main\\res\\menu\\list_queues.xml"
-    },
-    {
-        "merged": "C:\\Users\\MarcosPaulo\\Documents\\GitHub\\Electronic-Queue\\Electronic Queue Front End\\app\\build\\intermediates\\res\\merged\\debug\\menu\\create_controller.xml",
-        "source": "C:\\Users\\MarcosPaulo\\Documents\\GitHub\\Electronic-Queue\\Electronic Queue Front End\\app\\src\\main\\res\\menu\\create_controller.xml"
-    },
-    {
-        "merged": "C:\\Users\\MarcosPaulo\\Documents\\GitHub\\Electronic-Queue\\Electronic Queue Front End\\app\\build\\intermediates\\res\\merged\\debug\\menu\\list_tickets.xml",
-        "source": "C:\\Users\\MarcosPaulo\\Documents\\GitHub\\Electronic-Queue\\Electronic Queue Front End\\app\\src\\main\\res\\menu\\list_tickets.xml"
-    },
-    {
-        "merged": "C:\\Users\\MarcosPaulo\\AndroidStudioProjects\\Electronic Queue Client\\app\\build\\intermediates\\res\\merged\\debug\\menu\\search.xml",
-        "source": "C:\\Users\\MarcosPaulo\\AndroidStudioProjects\\Electronic Queue Client\\app\\src\\main\\res\\menu\\search.xml"
-    },
-    {
-        "merged": "C:\\Users\\MarcosPaulo\\AndroidStudioProjects\\Electronic Queue Client\\app\\build\\intermediates\\res\\merged\\debug\\menu\\create_controller.xml",
-        "source": "C:\\Users\\MarcosPaulo\\AndroidStudioProjects\\Electronic Queue Client\\app\\src\\main\\res\\menu\\create_controller.xml"
-    },
-    {
-        "merged": "C:\\Users\\MarcosPaulo\\Documents\\GitHub\\Electronic-Queue\\Electronic Queue Front End\\app\\build\\intermediates\\res\\merged\\debug\\menu\\observer.xml",
-        "source": "C:\\Users\\MarcosPaulo\\Documents\\GitHub\\Electronic-Queue\\Electronic Queue Front End\\app\\src\\main\\res\\menu\\observer.xml"
-    },
-    {
-        "merged": "C:\\Users\\MarcosPaulo\\Documents\\GitHub\\Electronic-Queue\\Electronic Queue Front End\\app\\build\\intermediates\\res\\merged\\debug\\menu\\main.xml",
-        "source": "C:\\Users\\MarcosPaulo\\Documents\\GitHub\\Electronic-Queue\\Electronic Queue Front End\\app\\src\\main\\res\\menu\\main.xml"
-    },
-    {
-        "merged": "C:\\Users\\MarcosPaulo\\Documents\\GitHub\\Electronic-Queue\\Electronic Queue Front End\\app\\build\\intermediates\\res\\merged\\debug\\menu\\search.xml",
-        "source": "C:\\Users\\MarcosPaulo\\Documents\\GitHub\\Electronic-Queue\\Electronic Queue Front End\\app\\src\\main\\res\\menu\\search.xml"
     },
     {
         "merged": "C:\\Users\\MarcosPaulo\\Documents\\GitHub\\Electronic_Queue_Front_End\\app\\build\\intermediates\\res\\merged\\debug\\menu\\list_queues.xml",

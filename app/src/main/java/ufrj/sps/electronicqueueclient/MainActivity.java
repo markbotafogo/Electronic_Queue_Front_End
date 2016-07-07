@@ -3,6 +3,9 @@ package ufrj.sps.electronicqueueclient;
 import java.util.ArrayList;
 
 import android.app.Activity;
+import android.app.SearchManager;
+import android.app.SearchableInfo;
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -12,6 +15,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
+import android.widget.SearchView;
 import android.widget.Toast;
 
 public class MainActivity extends Activity {
@@ -24,18 +28,13 @@ public class MainActivity extends Activity {
 
 	private final Context mContext = this;
 
-	//Menu constants
-	private final int MY_TICKETS = 1;
-	private final int OBSERVER = 2;
-	private final int MY_HOME = 3;
-
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
-		
-		Log.i("Debug","Teste 1");
+
+		Log.i("Debug", "Teste 1");
 		Button searchQueueByIdButton = (Button) findViewById(R.id.button1);
 		searchQueueByIdButton.setOnClickListener(new OnClickListener() {
 
@@ -102,35 +101,28 @@ public class MainActivity extends Activity {
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 
-		menu.add(0, MY_TICKETS, 1, "My Tickets");
-		menu.add(0, OBSERVER, 2, "Observer");
-		menu.add(0, MY_HOME, 3, "My Home");
-		
 		getMenuInflater().inflate(R.menu.main, menu);
+
+        // Get the SearchView and set the searchable configuration
+        SearchManager searchManager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
+        SearchView searchView = (SearchView) menu.findItem(R.id.action_search).getActionView();
+        SearchableInfo searchableInfo = searchManager.getSearchableInfo(new ComponentName
+                (this, ListQueuesActivity.class));
+        searchView.setSearchableInfo(searchableInfo);
+        searchView.setQueryHint("Search Queue");
+
 		return true;
+
 	}
 
 	public boolean onOptionsItemSelected(MenuItem item){
 		
 		switch(item.getItemId())
 		{
-		
-			case MY_TICKETS:
 				
-				Intent intent = new Intent(MainActivity.this, ListTicketsActivity.class);
-				startActivity(intent);
-				break;
-				
-			case OBSERVER:
-				
-				Intent intent2 = new Intent(MainActivity.this, ObserverActivity.class);
-				startActivity(intent2);
-				break;
-				
-			case MY_HOME:
-				
+			case R.id.action_my_home:
+
 				Cache cache = (Cache) getApplicationContext();
-				cache = cache.getInstance();
 				int opt = cache.getUser();
 				
 				switch (opt){

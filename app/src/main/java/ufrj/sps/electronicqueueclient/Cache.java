@@ -13,7 +13,6 @@ import java.util.ArrayList;
 public class Cache extends Application{
 	
 	private ArrayList<Queue> mMemory;
-	private static Cache sSingleton;
 	private boolean mRunning = false;
 	private boolean mUserRegistered = false;
 	private String mUserName;
@@ -28,13 +27,8 @@ public class Cache extends Application{
 	public void onCreate(){
 		
 		super.onCreate();
-		sSingleton = this;
-		mMemory = new ArrayList<Queue>();
+		mMemory = new ArrayList<>();
 		
-	}
-	
-	Cache getInstance(){
-		return sSingleton;
 	}
 	
 	boolean add(Queue queue){
@@ -78,7 +72,7 @@ public class Cache extends Application{
 	
 	ArrayList<Queue> searchByName(Queue queue){
 		
-		ArrayList<Queue> temp = new ArrayList<Queue>();
+		ArrayList<Queue> temp = new ArrayList<>();
 		
 		for(int i = 0; i < mMemory.size(); i++ ){
 		

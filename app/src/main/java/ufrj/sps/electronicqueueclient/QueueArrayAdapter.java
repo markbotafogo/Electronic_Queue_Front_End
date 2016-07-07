@@ -19,7 +19,7 @@ class QueueArrayAdapter extends ArrayAdapter<Queue> {
 
 	private Context mContext;
 
-	private List<Queue> mQueuesList = new ArrayList<Queue>();
+	private List<Queue> mQueuesList = new ArrayList<>();
 	
     QueueArrayAdapter(Context context, int textViewResourceId, List<Queue> objects) {
 

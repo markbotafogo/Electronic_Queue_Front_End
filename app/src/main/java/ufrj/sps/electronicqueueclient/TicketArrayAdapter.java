@@ -20,7 +20,7 @@ public class TicketArrayAdapter extends ArrayAdapter<Queue>{
 
 	private Context mContext;
 
-	private List<Queue> mListQueuesWithTicket = new ArrayList<Queue>();
+	private List<Queue> mListQueuesWithTicket = new ArrayList<>();
 	
     TicketArrayAdapter(Context context, int textViewResourceId, List<Queue> objects) {
 

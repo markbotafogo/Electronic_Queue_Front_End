@@ -5,8 +5,8 @@
     android:versionName="1.0" >
 
     <uses-sdk
-        android:minSdkVersion="8"
-        android:targetSdkVersion="18" />
+        android:minSdkVersion="14"
+        android:targetSdkVersion="23" />
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
@@ -14,10 +14,12 @@
     <application
         android:name="ufrj.sps.electronicqueueclient.Cache"
         android:allowBackup="true"
-        android:debuggable="true"
-        android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
+        <meta-data
+            android:name="android.app.default_searchable"
+            android:value=".ListQueuesActivity" />
+
         <activity
             android:name="ufrj.sps.electronicqueueclient.MainActivity"
             android:label="@string/app_name" >
@@ -26,10 +28,24 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+
+            <meta-data
+                android:name="android.app.default_searchable"
+                android:value=".ListQueuesActivity" />
         </activity>
         <activity
             android:name="ufrj.sps.electronicqueueclient.ListQueuesActivity"
-            android:label="@string/title_activity_list_queues" >
+            android:label="@string/title_activity_list_queues"
+            android:launchMode="singleTop" >
+            <intent-filter>
+                <action android:name="android.intent.action.SEARCH" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.app.searchable"
+                android:resource="@xml/searchable" />
         </activity>
         <activity
             android:name="ufrj.sps.electronicqueueclient.LoginActivity"

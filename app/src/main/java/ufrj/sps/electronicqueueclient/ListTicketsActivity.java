@@ -37,16 +37,14 @@ public class ListTicketsActivity extends ListActivity {
 	protected void onCreate(Bundle savedInstanceState) {
 
 		super.onCreate(savedInstanceState);
-		
 		setContentView(R.layout.activity_list_tickets);
 		
 		Cache cache = (Cache) getApplicationContext();
-		cache = cache.getInstance();
 
 		Log.i("Debug","ListTicketsActivity started");
 		
 		mQueuesInCache = cache.getAll();
-		mQueuesWithTicket = new ArrayList<Queue>();
+		mQueuesWithTicket = new ArrayList<>();
 
 		for(int i = 0; i < mQueuesInCache.size(); i++){
 
